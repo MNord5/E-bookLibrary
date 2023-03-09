@@ -14,6 +14,8 @@ namespace E_bookLibrary.Models
         public string? VerificationToken { get; set; } 
         public DateTime? VerifiedAt { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
-        public List<Book> Ebooks { get; set; }
+
+        //Navigation property
+        public List<Book>? Ebooks { get; set; }
     }
 }

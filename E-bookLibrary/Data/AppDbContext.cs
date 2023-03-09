@@ -10,5 +10,6 @@ namespace E_bookLibrary.Data
         }
 
         public DbSet<Book> Ebooks { get; set; }
+        public DbSet<UserModel> Users { get; set; }
     }
 }

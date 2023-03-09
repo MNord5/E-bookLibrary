@@ -6,13 +6,21 @@ namespace E_bookLibrary.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
-        public string Title { get; set; }
-        public string Genre { get; set; }
+        public string Title { get; set; } = string.Empty;
+
+        public string Genre { get; set; } = string.Empty;
+
         [Required]
-        public string Author { get; set; }
-        public byte[] EbookFile { get; set; }
-        public string ImgUrl { get; set; } 
+        public string Author { get; set; } = string.Empty;
+
+        [Required]
+        public byte[]? EbookFile { get; set; }
+        public string ImgUrl { get; set; } = string.Empty;
+
+        public int UserId { get; set; }
+        public UserModel User { get; set; }
 
     }
 }
