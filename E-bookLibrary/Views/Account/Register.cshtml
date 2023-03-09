@@ -1,0 +1,40 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="card" style="min-width: 70%">
+            <div class="card-header">
+                <h2 class="text-center">Register</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div>
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for=Email type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="UserName" class="form-label">Name</label>
+                        <input asp-for=UserName type="text" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="p-3 d-grid col-6 mx-auto">
+                        <button type="submit" class="btn btn-dark">Register</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
