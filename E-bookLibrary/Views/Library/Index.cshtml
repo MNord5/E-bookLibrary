@@ -1,7 +1,51 @@
 ﻿
+@model IEnumerable<Book>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Library</h1>
+<h3>@User.Identity.Name</h3>
 
+<table class="table table-bordered table-striped" style="width:80%">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Cover
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model) {
+            <tr>
+                <td>
+                    @obj.Title
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @obj.Author
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    empty
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    empty
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

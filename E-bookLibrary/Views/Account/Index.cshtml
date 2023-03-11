@@ -14,6 +14,11 @@
             <div class="card-body">
                 <form method="post">
                     <div>
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for=Email type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div>
                         <label asp-for="UserName" class="form-label">Name</label>
                         <input asp-for="UserName" type="text" class="form-control" />
                         <span asp-validation-for="UserName" class="text-danger"></span>
@@ -32,3 +37,9 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
