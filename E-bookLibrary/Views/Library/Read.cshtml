@@ -1,0 +1,28 @@
+﻿@model EbookUpload
+@{
+    ViewData["Title"] = "Read";
+}
+@{
+    var ebook = ViewData.Model;
+}
+
+<h1>Read</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Cover Photo</th>
+    </tr>
+    <tr>
+        <td>
+            @ebook.Title
+        </td>
+        <td>
+            @ebook.Author
+        </td>
+        <td>
+           
+        </td>
+    </tr>
+</table>

@@ -5,7 +5,19 @@
 }
 
 <h1>Library</h1>
-<h3>@User.Identity.Name</h3>
+<p>
+    <a asp-controller="Library" asp-action="Profile">Add new book</a>
+
+</p>
+
+
+<form asp-controller="Library" asp-action="Index">
+    <div>
+        <h5>Search Title:</h5> 
+        <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </div>
+</form>
 
 <table class="table table-bordered table-striped" style="width:80%">
     <thead>
@@ -19,9 +31,7 @@
             <th>
                 Genre
             </th>
-            <th>
-                Cover
-            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,20 +40,16 @@
                 <td>
                     @obj.Title
                 </td>
-            </tr>
-            <tr>
+        
                 <td>
                     @obj.Author
                 </td>
-            </tr>
-            <tr>
+         
                 <td>
                     empty
                 </td>
-            </tr>
-            <tr>
                 <td>
-                    empty
+                    <a asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
                 </td>
             </tr>
         }

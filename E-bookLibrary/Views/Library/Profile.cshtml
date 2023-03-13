@@ -3,18 +3,16 @@
     ViewData["Title"] = "Profile";
 }
 
-<h1>Profile</h1>
-<h3>@User.Identity.Name</h3>
-<h3>@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value </h3>
+
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col d-flex justify-content-center">
-            <div class="card p-3 d-grid col-6 mx-auto">
+        <div class="col-md-6 mx-auto">
+            <div class="card mt-5">
                 <div class="card-header">
                     <h2 class="text-center">Add book</h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-3">
                     <form method="post" enctype="multipart/form-data">
                         <div>
                             <label asp-for="Title" class="form-label">Title</label>
@@ -31,11 +29,16 @@
                             <input asp-for="FormFile" type="file" accept=".epub" class="form-control" />
                             <span asp-validation-for="FormFile" class="text-danger"></span>
                         </div>
-                        <div class="p-3 d-grid col-6 mx-auto">
-                            <button type="submit" class="btn btn-dark">Upload</button>
+                        <div class="pt-3 d-grid col-6 mx-auto">
+                            <button type="submit" class="btn btn-dark btn-lg">Upload</button>
                         </div>
 
                     </form>
+                    <div>
+                        @if(TempData["success"] != null) {
+                            <h3>@TempData["success"]</h3>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

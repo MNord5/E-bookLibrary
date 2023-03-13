@@ -1,18 +1,35 @@
 html {
   font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 0px;
+  height: 100vh;
+  padding: 2px;
+}
+.container-body {
+    width: 99%;
+    height: 89%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#myfooter {
+    background-color: antiquewhite;
 }

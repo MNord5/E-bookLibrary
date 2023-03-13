@@ -15,6 +15,7 @@ namespace E_bookLibrary.Controllers
         {
                 _context = context;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -96,7 +97,7 @@ namespace E_bookLibrary.Controllers
 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("LogIn");
+                return RedirectToAction("Index");
             }
             return View(request);
         }
