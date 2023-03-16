@@ -1,4 +1,4 @@
-﻿@model EbookUpload
+﻿@model ReadBook
 @{
     ViewData["Title"] = "Read";
 }
@@ -8,21 +8,16 @@
 
 <h1>Read</h1>
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Cover Photo</th>
-    </tr>
-    <tr>
-        <td>
-            @ebook.Title
-        </td>
-        <td>
-            @ebook.Author
-        </td>
-        <td>
-           
-        </td>
-    </tr>
-</table>
+
+<div class="col-md-6 mx-auto">
+    <img class="img-fluid" src="@ebook.imgcover" alt="book-cover"/>
+    
+</div>
+
+<div>
+    @foreach (var textContentFile in @ebook.Content)
+    {
+        @Html.Raw(textContentFile.Content)
+    }
+    
+</div>

@@ -49,7 +49,8 @@
                     empty
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                    <a class="btn btn-outline-primary" asp-action="Read" asp-route-id="@obj.Id">Read</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
                 </td>
             </tr>
         }
