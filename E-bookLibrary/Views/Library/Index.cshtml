@@ -4,55 +4,99 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Library</h1>
-<p>
-    <a asp-controller="Library" asp-action="Profile">Add new book</a>
-
-</p>
-
-
-<form asp-controller="Library" asp-action="Index">
-    <div>
-        <h5>Search Title:</h5> 
-        <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
+<div class="container-md">
+    <h1>Library</h1>
+    
+    <div class="linkSpace">
+        <a class="btn btn-info" asp-controller="Library" asp-action="Profile">Add new book</a>
     </div>
-</form>
-
-<table class="table table-bordered table-striped" style="width:80%">
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Author
-            </th>
-            <th>
-                Genre
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var obj in Model) {
-            <tr>
-                <td>
-                    @obj.Title
-                </td>
         
-                <td>
-                    @obj.Author
-                </td>
-         
-                <td>
-                    empty
-                </td>
-                <td>
-                    <a class="btn btn-outline-primary" asp-action="Read" asp-route-id="@obj.Id">Read</a>
-                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
-                </td>
+
+    <form asp-controller="Library" asp-action="Index">
+        <div class="row">
+            <div class="col-md-6">
+            <input type="text" name="SearchString" class="form-control" placeholder="Search by Title"/>
+            </div>
+            <div class="col-md-4">
+            <button type="submit" class="btn btn-info">Search</button>
+            </div>
+            
+        </div>
+    </form>
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model) {
+                <tr>
+                    <td>
+                        @obj.Title
+                    </td>
+        
+                    <td>
+                        @obj.Author
+                    </td>
+         
+                    <td>
+                        empty
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-primary" asp-action="Read" asp-route-id="@obj.Id">Read</a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@obj.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        int previous = ViewBag.CurrentPage - 1;
+        int next = ViewBag.CurrentPage + 1;
+    }
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+
+            @if(ViewBag.CurrentPage > 1) {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-currentPage="@previous" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            
+            @for(int i = 1; i <= ViewBag.TotalPages; i++) {
+
+                @if(i == ViewBag.CurrentPage) {
+                    <li class="page-item active"><a class="page-link" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+                }else {
+                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-currentPage="@i">@i</a></li>
+                }
+                         
+            }
+            
+            @if(ViewBag.CurrentPage < ViewBag.TotalPages) {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-currentPage="@next" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            
+        </ul>
+    </nav>
+</div>

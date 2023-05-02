@@ -15,21 +15,33 @@ html {
 html {
     position: relative;
     min-height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
   margin-bottom: 0px;
   height: 100vh;
-  padding: 2px;
+  padding: 0px;
+  background-color: white;
+
 }
 .container-body {
     width: 99%;
     min-height: 89%;
     margin-right: auto;
     margin-left: auto;
+    background-color: white;
+    
 }
 #myfooter {
-    background-color: antiquewhite;
+    background-color: cadetblue;
+    color: white;
+}
+
+.linkSpace {
+    padding: 5px 0px;
+    margin-bottom: 5px;
+}
+
+.header-color {
+    background-color: cadetblue;
 }

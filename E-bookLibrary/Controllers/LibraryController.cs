@@ -20,7 +20,7 @@ namespace E_bookLibrary.Controllers
             _db = db;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, int currentPage=1)
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             var id = int.Parse(userId);
@@ -35,6 +35,15 @@ namespace E_bookLibrary.Controllers
             {
                 bookList = bookList.Where(s => s.Title!.Contains(searchString));
             }
+
+            var totalBooks = bookList.Count();
+            int pageSize = 5;
+            int totalPages = (int)Math.Ceiling((decimal)totalBooks / (decimal)pageSize);
+            bookList = bookList.Skip((currentPage - 1) * pageSize).Take(pageSize);
+
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = currentPage;
+            ViewBag.PageSize = pageSize;
 
             return View(await bookList.ToListAsync());
         }
