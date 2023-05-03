@@ -1,14 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="m-5">
+    <h1 class="text-center">E-bookLibrary</h1>
+</div>
 
-<div class="container-fluid d-flex justify-content-center">
+<div class="container-fluid d-flex justify-content-center m-2">
     <img src="~/img/books-many.jpg" height="300px" />
 </div>
 <div class="container-fluid text-center p-3">
-    <h2>Welcome to Ebook Library</h2>
-    <a asp-controller="Account" asp-action="Register"><h4>Register to enter</h4></a>
-
+    
+    <a class="btn btn-dark btn-lg" asp-controller="Account" asp-action="Register"><h4>Register to enter</h4></a>
+   
 </div>
 <div class="container-fluid text-center p-3">
     <p>Website built using ASP.Net Core MVC for uploading and reading e-books in .epub format.</p>

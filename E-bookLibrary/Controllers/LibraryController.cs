@@ -106,6 +106,41 @@ namespace E_bookLibrary.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var ebook = await _db.Ebooks
+                .FirstOrDefaultAsync(b => b.Id == id);
+            if (ebook == null)
+            {
+                return NotFound();
+            }
+
+            return View(ebook);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Book editBook)
+        {
+
+            
+            
+                var ebook = await _db.Ebooks.FindAsync(editBook.Id);
+                ebook.Author = editBook.Author;
+                ebook.Title = editBook.Title;
+
+                _db.Ebooks.Update(ebook);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            
+
+        }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

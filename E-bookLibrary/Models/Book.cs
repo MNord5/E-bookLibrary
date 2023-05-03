@@ -15,7 +15,7 @@ namespace E_bookLibrary.Models
         [Required]
         public string Author { get; set; } = string.Empty;
 
-        [Required]
+
         public byte[]? EbookFile { get; set; }
         public string ImgUrl { get; set; } = string.Empty;
 
