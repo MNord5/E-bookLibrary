@@ -7,6 +7,8 @@ using System.Drawing;
 using System.IO;
 using VersOne.Epub;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Text;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace E_bookLibrary.Controllers
 {
@@ -64,11 +66,22 @@ namespace E_bookLibrary.Controllers
 
                 var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 
+                string type = ".epub";
+                string filePath = Path.GetExtension(addBook.FormFile.FileName);
+                bool correctExtension = IsValidExtension(filePath, type);
+
+                
+                if (!correctExtension)
+                {
+                    ModelState.AddModelError("FormFile", "Wrong file format.");
+
+                }
 
                 using (var memoryStream = new MemoryStream())
                 {
+
                     await addBook.FormFile.CopyToAsync(memoryStream);
-                    if (memoryStream.Length < 2097152)
+                    if (memoryStream.Length < 2097152 && correctExtension)
                     {
                         var ebook = new Book()
                         {
@@ -81,11 +94,12 @@ namespace E_bookLibrary.Controllers
 
                         _db.Ebooks.Add(ebook);
                         await _db.SaveChangesAsync();
-                        TempData["success"] = "Ebook uploaded succesfully!";
+                        TempData["success"] = "Book added succesfully!";
                     }
                     else
                     {
-                        ModelState.AddModelError("File", "The file is too large.");
+
+                        ModelState.AddModelError("FormFile", "File is too large.");
                     }
                 }
             }
@@ -152,6 +166,25 @@ namespace E_bookLibrary.Controllers
             return View(ebook);
            
            
+        }
+
+        public static bool IsValidExtension(string filepath, string desiredType)
+        {
+            return Path.GetExtension(filepath) == desiredType;
+        }
+
+        public string GetMimeType(string filePath)
+        {
+            const string DefaultContentType = "application/octet-stream";
+
+            var provider = new FileExtensionContentTypeProvider();
+
+            if (!provider.TryGetContentType(filePath, out string contentType))
+            {
+                contentType = DefaultContentType;
+            }
+
+            return contentType;
         }
     }
 }
